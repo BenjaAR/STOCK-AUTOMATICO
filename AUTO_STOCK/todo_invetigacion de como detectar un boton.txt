@@ -1,0 +1,371 @@
+//*[@id="formulario-icono"]/table/tbody/tr/td[1]/a/img
+//*[@id="formulario-icono"]/table/tbody/tr/td[1]/a
+//*[@id="mensaje"]//*[@id="mensaje"]
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from webdriver_manager.chrome import ChromeDriverManager
+import time
+
+# Configuración del navegador
+options = Options()
+options.add_argument('--start-maximized')  # Iniciar el navegador en pantalla completa
+options.add_argument('--disable-extensions')  # Desactivar extensiones del navegador
+options.add_experimental_option("detach", True)  # Mantener el navegador abierto
+
+# Crear el servicio para ChromeDriver
+service = Service(ChromeDriverManager().install())
+
+# Inicializar el WebDriver con el servicio y las opciones
+driver = webdriver.Chrome(service=service, options=options)
+
+# Abrir la página específica
+url = "http://192.168.0.56/sareweb2/formulario.php?tabla=VTALRAVE&&menut=10,40,15,00,00&&tipotabla=1"
+driver.get(url)
+
+# Esperamos que la página cargue correctamente
+time.sleep(3)  # Espera para asegurar que la página esté completamente cargada
+
+# Cambiar al frame que contiene el contenido real
+driver.switch_to.frame("sistema")
+
+# ------------------------------------------------------------
+# 1. Buscar el elemento específico usando su XPath
+# ------------------------------------------------------------
+print("🔍 Buscando el elemento con XPath: /html/body/table/tbody/tr/td/div/form/div/div[7]/table/tbody/tr/td[1]/a")
+
+try:
+    # Esperar hasta que el elemento con el XPath esté presente en la página
+    elemento = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.XPATH, "/html/body/table/tbody/tr/td/div/form/div/div[7]/table/tbody/tr/td[1]/a"))
+    )
+
+    # Imprimir el HTML completo del enlace encontrado (incluyendo todo lo que hay dentro de él)
+    print("✅ Elemento encontrado.")
+    print("HTML del elemento encontrado (incluyendo todo lo que hay dentro):")
+    print(elemento.get_attribute('outerHTML'))  # Devuelve el HTML completo del enlace y su contenido
+
+except Exception as e:
+    print(f"❌ No se pudo encontrar el elemento: {e}")
+
+# Mantener la ventana abierta para inspeccionar
+input("Presiona Enter para cerrar el navegador...")
+
+# Cerrar el navegador
+driver.quit()
+
+_____________________________________________________________________________________________
+
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from webdriver_manager.chrome import ChromeDriverManager
+import time
+
+# Configuración del navegador
+options = Options()
+options.add_argument('--start-maximized')  # Iniciar el navegador en pantalla completa
+options.add_argument('--disable-extensions')  # Desactivar extensiones del navegador
+options.add_experimental_option("detach", True)  # Mantener el navegador abierto
+
+# Crear el servicio para ChromeDriver
+service = Service(ChromeDriverManager().install())
+
+# Inicializar el WebDriver con el servicio y las opciones
+driver = webdriver.Chrome(service=service, options=options)
+
+# Abrir la página específica
+url = "http://192.168.0.56/sareweb2/formulario.php?tabla=VTALRAVE&&menut=10,40,15,00,00&&tipotabla=1"
+driver.get(url)
+
+# Esperamos que la página cargue correctamente
+time.sleep(3)  # Espera para asegurar que la página esté completamente cargada
+
+# Cambiar al frame que contiene el contenido real
+driver.switch_to.frame("sistema")
+
+# ------------------------------------------------------------
+# 1. Buscar el enlace que contiene la imagen y hacer clic
+# ------------------------------------------------------------
+print("🔍 Buscando la imagen que abrirá la ventana emergente...")
+
+try:
+    # Esperar hasta que la imagen con el enlace esté presente en la página
+    imagen_reporte = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.XPATH, '//a[img[@src="IMAGES/BOTONES/imprimir.png"]]/img'))
+    )
+
+    # Hacer clic en la imagen para abrir la ventana emergente
+    imagen_reporte.click()
+    print("✅ Clic en la imagen realizado correctamente, ventana emergente abierta.")
+
+except Exception as e:
+    print(f"❌ No se pudo hacer clic en la imagen: {e}")
+
+# Mantener la ventana abierta para inspeccionar la ventana emergente
+input("Presiona Enter para cerrar el navegador...")
+
+# Cerrar el navegador
+driver.quit()
+
+___________________________________________________________________________________________________-
+
+
+
+<a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('IMPRIMIR','','IMAGES/BOTONES/imprimirover.png',0)">
+					<img src="IMAGES/BOTONES/imprimir.png" name="IMPRIMIR" width="80" height="60" border="0" onclick="javascript: ConsultarReporte('POPUP_REPORTE_RANKINGVTAS');"></a>
+
+
+___________________________________________________________________________________________________________________
+
+
+
+<div id="popup-informacion" style="display: block;">	
+    <table width="816" border="0" cellspacing="0" cellpadding="0" class="backgroundformulario">
+    <tbody><tr>
+        <td colspan="7" class="centro-color1">RANKING DE VENTAS                        FECHA :
+            <span class="popup-subtitulo-isquierda"><strong>16/05/2025</strong></span></td>
+        <td align="right" valign="middle" class="centro-color1"><span class="derecha">
+            <input type="button" name="Submit3" style="cursor:pointer" onclick="javascript: Popup('');" value="X">    </span></td>
+    </tr>
+    <tr>
+    <td bgcolor="#DFDFDF" class="popup-rayahorizontal-derecha">&nbsp;</td>
+    <td bgcolor="#DFDFDF" class="popup-rayahorizontal-derecha">&nbsp;</td>
+    <td bgcolor="#DFDFDF" class="popup-rayahorizontal-derecha">&nbsp;</td>
+    <td bgcolor="#DFDFDF" class="popup-rayahorizontal-derecha">&nbsp;</td>
+    <td bgcolor="#DFDFDF" class="popup-rayahorizontal-derecha">&nbsp;</td>
+    <td bgcolor="#DFDFDF" class="popup-rayahorizontal-derecha">&nbsp;</td>
+    <td bgcolor="#DFDFDF" class="popup-rayahorizontal-izquierda">&nbsp;</td>
+    </tr>
+</tbody></table>
+<div style="border:0px solid;width:806px;float:left;padding-left:10px" class="backgroundformulario">
+  <div>
+   <div style="float:left;border:1px solid;padding:10px;margin-bottom:10px;margin-top:5px;width:650px">
+    <table border="0" style="float:left">
+     <tbody><tr>
+	      <td><b style="font-size:12px">Moneda</b> :</td>
+
+		  <td style="width:100px">&nbsp;
+		  </td><td><b style="font-size:12px">Ordenado Por:</b> :</td>
+		 
+		  <td><b style="font-size:12px">Que Campos</b> :</td>
+	 </tr><tr>
+	      <td style="vertical-align:top;"> 	         
+			 <div style="border:1px solid;padding:5px">
+		     <table>
+				<tbody><tr>
+					<td><b>MON.NAC</b></td><td><input type="radio" name="Ficha1[moneda]" id="Ficha1[form1]" value="soles" checked="">
+				    </td><td><b>MON.EXT</b></td><td> <input type="radio" name="Ficha1[moneda]" id="Ficha1[form1]" value="dolares"></td>	
+				</tr><tr>
+				
+						</tr><tr>
+					<td><b>SOLO MON.NAC</b></td><td><input type="radio" name="Ficha1[moneda]" id="Ficha1[form1]" value="Solo_Soles">
+				    </td><td><b>SOLO MON.EXT</b></td><td> <input type="radio" name="Ficha1[moneda]" id="Ficha1[form1]" value="Solo_Dolares"></td>	
+				</tr><tr>		
+				    
+			</tr></tbody></table>  
+			</div>
+	
+			
+			
+		</td><td style="width:100px">&nbsp;	
+		</td><td style="vertical-align:top;">
+		     <div style="border:1px solid;padding:7px">			 
+		     <table>
+				<tbody><tr>
+					<td><b>ClientesSD</b>
+					</td><td><input type="radio" name="Ficha1[seleccionar]" id="Ficha1[seleccionar]" value="Clientes" checked="">
+					</td><td>&nbsp;</td>
+					<td><b>Vendedor</b>
+					</td><td><input type="radio" name="Ficha1[seleccionar]" id="Ficha1[seleccionar]" value="Vendedor">
+				
+					</td><td><b>Division</b>
+					</td><td><input type="radio" name="Ficha1[seleccionar]" id="Ficha1[seleccionar]" value="Division">	
+					</td><td>&nbsp;</td>
+					<td><b>Productos</b>
+					</td><td><input type="radio" name="Ficha1[seleccionar]" id="Ficha1[seleccionar]" value="Productos">
+					</td><td>&nbsp;</td>
+					<td><b>ClienteCD</b>
+					</td><td><input type="radio" name="Ficha1[seleccionar]" id="Ficha1[seleccionar]" value="Clientes_CD">	
+					</td><td>&nbsp;</td>
+				</tr><tr>
+									
+					<td><b></b>
+					</td><td>
+					</td><td>&nbsp;</td>
+					<td><b>Sect.Det</b>
+					</td><td><input type="radio" name="Ficha1[seleccionar]" id="Ficha1[seleccionar]" value="Sector_Det">
+
+				</td><td><b>Sect.Res</b>
+					</td><td><input type="radio" name="Ficha1[seleccionar]" id="Ficha1[seleccionar]" value="Sector_Res">	
+					</td><td>&nbsp;</td>
+					<td><b>NoDoc</b>
+					</td><td><input type="radio" name="Ficha1[seleccionar]" id="Ficha1[seleccionar]" value="NoDoc">
+									
+					</td><td>&nbsp;</td>
+					<td><b>C. Costo</b>
+					</td><td><input type="radio" name="Ficha1[seleccionar]" id="Ficha1[seleccionar]" value="CCO">
+															
+			</td></tr></tbody></table>  
+			</div>
+			
+		</td>
+		
+		<td><div style="border:1px solid;padding:7px">			 
+		     <table>
+				<tbody><tr>
+					<td><b>Unidades</b>
+					</td><td><input type="radio" name="Ficha1[campos]" id="Ficha1[form1]" value="cantidad">
+					</td><td>&nbsp;</td>
+					<td><b>Valor Venta</b>
+					</td><td><input type="radio" name="Ficha1[campos]" id="Ficha1[form1]" value="porcentaje" checked="">
+
+
+
+				
+					</td></tr><tr>					
+					<td><b></b>
+					</td><td>
+						
+					</td><td>&nbsp;</td>
+					<td><b></b>
+					</td><td>	
+															
+			</td></tr></tbody></table>  
+			</div>
+</td>	
+  </tr></tbody></table>
+   </div>
+  </div>
+    <!--  divvvvv -->
+  <div style="float:left;border:1px solid;padding:10px;margin-top:10px;width:650px">
+   <table style="float:left">
+   
+   
+    <tbody><tr>
+	   <td><b style="font-size:12px">Seleccione Rango de Fechas</b> :</td>
+		<td style="font-size:12px">&nbsp;&nbsp;<b>Inicio</b></td><td><b style="font-size:12px">Final</b> 
+		</td></tr><tr><td><b style="font-size:12px">Seleccione Fechas</b></td><td>: <input name="Ficha1[fecha1]" id="Ficha1[fecha1]" type="text" class="caja-especial-pequena" maxlength="10" size="10" value="01/05/2025" onkeyup="javascript:SiguienteCampo2(event.keyCode,'Ficha1[fecha2]');" onkeydown="Mascara(this,Data);" onkeypress="Mascara(this,Data);">&nbsp; 
+		<input type="button" class="button-calendario" onfocus="javascript: setColorInput('Ficha1[fecha1]'); " onclick="displayCalendar('Ficha1[fecha1]','dd/mm/yyyy',this)" value=".">       &nbsp;    
+		</td><td><input name="Ficha1[fecha2]" id="Ficha1[fecha2]" type="text" class="caja-especial-pequena" maxlength="10" size="10" value="16/05/2025" onkeyup="javascript:SiguienteCampo2(event.keyCode,'Ficha1[sucursal1]');" onkeydown="Mascara(this,Data);" onkeypress="Mascara(this,Data);">&nbsp; 
+		<input type="button" class="button-calendario" onfocus="javascript: setColorInput('Ficha1[fecha2]'); " onclick="displayCalendar('Ficha1[fecha2]','dd/mm/yyyy',this)" value=".">
+	</td></tr>
+
+    <tr>   
+	   <td><b style="font-size:12px">Sucursal</b></td><td>: <input name="Ficha1[sucursal1]" id="Ficha1[sucursal1]" type="text" class="caja-especial-pequena" onkeypress="return validarAlfanumerico(event);" maxlength="3" size="3" value="000" onkeyup="getFiltrarCajaTextoTablalud2('Ficha1[sucursal1]', this.value, 'FILTRAR_SUCURSAL', '','filtrar-datos14',event);
+	   javascript: setColorInput('Ficha1[sucursal1]')">   
+	   <div id="filtrar-datos14" name="filtrar-datos14" style="display:inline"></div>        
+	   </td><td><input name="Ficha1[sucursal2]" id="Ficha1[sucursal2]" type="text" class="caja-especial-pequena" maxlength="3" size="3" value="999" onkeypress="return validarSiNumero(event);" onkeyup="javascript:SiguienteCampo2(event.keyCode,'Ficha1[cliente1]');">
+	</td></tr>
+
+    <tr>   
+	   <td><b style="font-size:12px">Cliente</b></td><td>: <input name="Ficha1[cliente1]" id="Ficha1[cliente1]" type="text" class="caja-especial-pequena" maxlength="8" size="8" value="00000000" onkeypress="return validarAlfanumerico(event);" onkeyup="getFiltrarCajaTextoTablalud2('Ficha1[cliente1]', this.value, 'FILTRAR_CLIENTE', '','filtrar-datos5',event);
+		javascript: setColorInput('Ficha1[cliente1]')"> 
+		<div id="filtrar-datos5" name="filtrar-datos5" style="display:inline"></div>
+		</td><td><input name="Ficha1[cliente2]" id="Ficha1[cliente2]" type="text" class="caja-especial-pequena" maxlength="8" size="8" value="99999999" onkeyup="getFiltrarCajaTextoTablalud2('Ficha1[cliente2]', this.value, 'FILTRAR_CLIENTE1', '','filtrar-datos5',event);
+		javascript: setColorInput('Ficha1[cliente2]')">
+		</td><td><b style="font-size:12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C/ Dir</b>
+		</td><td>: <input name="Ficha1[cdir1]" id="Ficha1[cdir1]" type="text" class="caja-especial-pequena" maxlength="2" size="2" value="" onkeypress="return validarSiNumero(event);" onkeyup="javascript:SiguienteCampo2(event.keyCode,'Ficha1[cdir2]');">           
+		</td><td><input name="Ficha1[cdir2]" id="Ficha1[cdir2]" type="text" class="caja-especial-pequena" maxlength="2" size="2" value="99" onkeypress="return validarSiNumero(event);" onkeyup="javascript:SiguienteCampo2(event.keyCode,'Ficha1[vendedor1]');">		
+	</td></tr>
+
+
+    <tr>   
+	   <td><b style="font-size:12px">Vendedor</b></td><td>: <input name="Ficha1[vendedor1]" id="Ficha1[vendedor1]" type="text" class="caja-especial-pequena" onkeypress="return validarAlfanumerico(event);" maxlength="3" size="3" value="000" onkeyup="getFiltrarCajaTextoTablalud2('Ficha1[vendedor1]', this.value, 'FILTRAR_VENDEDOR', '','filtrar-datos7',event);
+	   javascript: setColorInput('Ficha1[vendedor1]')">    
+	   <div id="filtrar-datos7" name="filtrar-datos7" style="display:inline"></div>       
+	   </td><td><input name="Ficha1[vendedor2]" id="Ficha1[vendedor2]" type="text" class="caja-especial-pequena" maxlength="3" size="3" value="999" onkeyup="getFiltrarCajaTextoTablalud2('Ficha1[vendedor2]', this.value, 'FILTRAR_VENDEDOR1', '','filtrar-datos7',event);
+	   javascript: setColorInput('Ficha1[vendedor2]')">
+	</td></tr>
+
+
+    <tr>   
+	   <td><b style="font-size:12px">Almacen</b></td><td>: <input name="Ficha1[almacen1]" id="Ficha1[almacen1]" type="text" class="caja-especial-pequena" onkeypress="return validarAlfanumerico(event);" maxlength="3" size="3" value="000" onkeyup="getFiltrarCajaTextoTablalud2('Ficha1[almacen1]', this.value, 'FILTRAR_ALMACEN', '','filtrar-datos8',event);
+	   javascript: setColorInput('Ficha1[almacen1]')">    
+	   <div id="filtrar-datos8" name="filtrar-datos8" style="display:inline"></div>       
+	   </td><td><input name="Ficha1[almacen2]" id="Ficha1[almacen2]" type="text" class="caja-especial-pequena" maxlength="3" size="3" value="999" onkeyup="getFiltrarCajaTextoTablalud2('Ficha1[almacen2]', this.value, 'FILTRAR_ALMACEN1', '','filtrar-datos8',event);
+		javascript: setColorInput('Ficha1[almacen2]')">
+	</td></tr>	
+
+    <tr>   
+	   <td><b style="font-size:12px">Division</b></td><td>: 
+	   <input name="Ficha1[division1]" id="Ficha1[division1]" type="text" class="caja-especial-pequena" onkeypress="return validarAlfanumerico(event);" maxlength="3" size="3" value="000" onkeyup="getFiltrarCajaTextoTablalud2('Ficha1[division1]', this.value, 'FILTRAR_DIVISION', '','filtrar-datos9',event)" ;="" javascript:="" setcolorinput('ficha1[division1]')"="">   
+	   <div id="filtrar-datos9" name="filtrar-datos9" style="display:inline"></div>        
+	   </td><td><input name="Ficha1[division2]" id="Ficha1[division2]" type="text" class="caja-especial-pequena" maxlength="3" size="3" value="999" onkeyup="getFiltrarCajaTextoTablalud2('Ficha1[division2]', this.value, 'FILTRAR_DIVISION1', '','filtrar-datos9',event);
+		javascript: setColorInput('Ficha1[division2]')">
+	</td></tr>
+
+
+    <tr>   
+	   <td><b style="font-size:12px">Producto</b></td><td>: <input name="Ficha1[producto1]" id="Ficha1[producto1]" type="text" class="caja-especial-pequena" maxlength="15" size="15" value="" onkeypress="return validarAlfanumerico(event);" onkeyup="getFiltrarCajaTextoTablalud2('Ficha1[producto1]', this.value, 'FILTRAR_PRODUCTO', '','filtrar-datos6',event);
+		javascript: setColorInput('Ficha1[producto1]')">
+		<div id="filtrar-datos6" name="filtrar-datos6" style="display:inline"></div>           
+		</td><td><input name="Ficha1[producto2]" id="Ficha1[producto2]" type="text" class="caja-especial-pequena" maxlength="15" size="15" value="zzzzzzzzzzzzzzz" onkeypress="return validarAlfanumerico(event);" onkeyup="getFiltrarCajaTextoTablalud2('Ficha1[producto2]', this.value, 'FILTRAR_PRODUCTO1', '','filtrar-datos6',event);
+		javascript: setColorInput('Ficha1[producto2]')">
+	</td></tr>
+
+
+    <tr>   
+	   <td><b style="font-size:12px">Localidad</b></td><td>: <input name="Ficha1[localidad1]" id="Ficha1[localidad1]" type="text" class="caja-especial-pequena" onkeypress="return validarAlfanumerico(event);" maxlength="3" size="3" value="000" onkeyup="getFiltrarCajaTextoTablalud2('Ficha1[localidad1]', this.value, 'FILTRAR_LOCALIDAD', '','filtrar-datos10',event);
+	   javascript: setColorInput('Ficha1[localidad1]')">   
+	   <div id="filtrar-datos10" name="filtrar-datos10" style="display:inline"></div>        
+	   </td><td><input name="Ficha1[localidad2]" id="Ficha1[localidad2]" type="text" class="caja-especial-pequena" maxlength="3" size="3" value="999" onkeyup="getFiltrarCajaTextoTablalud2('Ficha1[localidad2]', this.value, 'FILTRAR_LOCALIDAD1', '','filtrar-datos10',event);
+		javascript: setColorInput('Ficha1[localidad2]')">
+		</td><td><b style="font-size:12px">Centro Costo</b></td><td>: <input name="Ficha1[costo1]" id="Ficha1[costo1]" type="text" class="caja-especial-pequena" maxlength="3" size="3" value="000" onkeypress="return validarAlfanumerico(event);" onkeyup="getFiltrarCajaTextoTablalud2('Ficha1[costo1]', this.value, 'FILTRAR_CCOSTO', '','filtrar-datos11',event);
+		javascript: setColorInput('Ficha1[costo1]')">   
+		<div id="filtrar-datos11" name="filtrar-datos11" style="display:inline"></div>        
+		</td><td><input name="Ficha1[costo2]" id="Ficha1[costo2]" type="text" class="caja-especial-pequena" maxlength="3" size="3" value="999" onkeyup="getFiltrarCajaTextoTablalud2('Ficha1[costo2]', this.value, 'FILTRAR_CCOSTO1', '','filtrar-datos11',event);
+		javascript: setColorInput('Ficha1[costo2]')">			 
+	</td></tr>
+
+    <tr>   
+	   <td><b style="font-size:12px">T. Doc</b></td><td>: <input name="Ficha1[tdoc1]" id="Ficha1[tdoc1]" type="text" class="caja-especial-pequena" maxlength="8" size="8" value="" onkeypress="return validarAlfanumerico(event);" onkeyup="getFiltrarCajaTextoTablalud2('Ficha1[tdoc1]', this.value, 'FILTRAR_DOCUMENTO', '','filtrar-datos13',event);
+		javascript: setColorInput('Ficha1[tdoc1]')">     
+		<div id="filtrar-datos13" name="filtrar-datos13" style="display:inline"></div>      
+		</td><td><input name="Ficha1[tdoc2]" id="Ficha1[tdoc2]" type="text" class="caja-especial-pequena" maxlength="8" size="8" value="zzzzzzzz" onkeypress="return validarAlfanumerico(event);" onkeyup="getFiltrarCajaTextoTablalud2('Ficha1[tdoc2]', this.value, 'FILTRAR_DOCUMENTO1', '','filtrar-datos13',event);
+		javascript: setColorInput('Ficha1[tdoc2]')">
+		</td><td><b style="font-size:12px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sector</b></td><td>: 
+		<input name="Ficha1[sector1]" id="Ficha1[sector1]" type="text" class="caja-especial-pequena" maxlength="3" size="3" value="000" onkeypress="return validarAlfanumerico(event);" onkeyup="getFiltrarCajaTextoTablalud2('Ficha1[sector1]', this.value, 'FILTRAR_SECTOR', '','filtrar-datos12',event);
+		javascript: setColorInput('Ficha1[sector1]')">  
+		<div id="filtrar-datos12" name="filtrar-datos12" style="display:inline"></div>         
+		</td><td><input name="Ficha1[sector2]" id="Ficha1[sector2]" type="text" class="caja-especial-pequena" maxlength="3" size="3" value="999" onkeyup="getFiltrarCajaTextoTablalud2('Ficha1[sector2]', this.value, 'FILTRAR_SECTOR1', '','filtrar-datos12',event);
+		javascript: setColorInput('Ficha1[sector2]')">		 
+	</td></tr>
+
+				
+   </tbody></table>
+   
+  </div>
+  <div style="float:left;padding-top:20px;padding-bottom:20px">
+   <div align="center">
+    <table border="0" cellspacing="0" cellpadding="0">
+    <tbody><tr>
+        <td class="centro-popup">
+		  <span class="derecha-popup">
+            <input name="Datos[generar_solcitud]" id="Datos[generar_solcitud]" type="button" class="button-generar" value="IMPRIMIR" onclick="javascript:setPostActionnewTabla
+				('IMPRIMIR_PDF_RANKINGVTAS',0, [],[],[['Ficha1[fecha1]' ,0,0,0,0],['Ficha1[fecha2]',0,0,0,0]])">
+		 </span></td><td>&nbsp;&nbsp;&nbsp;		
+         </td><td> 
+             <input name="Datos[generar_solcitud2]" id="Datos[generar_solcitud2]" type="button" class="button-generar" value="GENERAR EXCEL" onclick="javascript:setPostActionnewTabla
+				('ENVIAR_EXCEL_RANKINGVTAS',0, [],[],[['Ficha1[fecha1]',1,0,0,0],['Ficha1[fecha2]',1,0,0,0]])">
+            
+		</td>
+    </tr>
+	</tbody></table>
+   </div> 	
+  
+  </div>
+  <!--  ==================  --> 
+</div>
+	
+    				
+                
+				</div>

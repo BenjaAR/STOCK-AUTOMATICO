@@ -1,0 +1,29 @@
+pyinstaller --onefile --windowed --add-data "data;data" src/app_30_04.py
+
+
+# Correlativo
+correlativo_file = 'correlativo.txt'
+
+# Obtener la ruta de la carpeta "Descargas" del sistema
+descargas_dir = Path(os.path.expanduser("~"), "Descargas")
+
+def obtener_correlativo():
+    """
+    Lee el archivo de correlativo y devuelve el siguiente número correlativo de 5 dígitos.
+    """
+    try:
+        if os.path.exists(correlativo_file):
+            with open(correlativo_file, 'r') as f:
+                correlativo = int(f.read().strip())
+        else:
+            correlativo = 0
+        # Incrementar el correlativo y guardarlo en el archivo
+        correlativo += 1
+        with open(correlativo_file, 'w') as f:
+            f.write(str(correlativo).zfill(5))  # Guardamos el correlativo con 5 dígitos
+        return str(correlativo).zfill(5)
+    except Exception as e:
+        messagebox.showerror("Error al obtener correlativo", f"Hubo un problema al leer o escribir el archivo de correlativo: {e}")
+        print(f"❌ Error al obtener correlativo: {e}")
+        raise
+
